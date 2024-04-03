@@ -87,6 +87,16 @@ class GpuIndexIVFFlat : public GpuIndexIVF {
     /// Trains the coarse quantizer based on the given vector data
     void train(idx_t n, const float* x) override;
 
+    /*  It is used to reconstruct a given number of vectors in an Inverted File
+     * (IVF) index
+     *  @param i0          index of the first vector to reconstruct
+     *  @param n           number of vectors to reconstruct
+     *  @param out         This is a pointer to a buffer where the reconstructed
+     * vectors will be stored.
+     */
+
+    void reconstruct_n(idx_t i0, idx_t n, float* out) const override;
+
    protected:
     /// Initialize appropriate index
     void setIndex_(
