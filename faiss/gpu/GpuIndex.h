@@ -43,6 +43,11 @@ struct GpuIndexConfig {
 #else
     bool use_raft = false;
 #endif
+
+    /// enable CPU fallback; when set to true, the cloner will clone to CPU
+    /// the index components that are not impemented on GPU; when set to false,
+    /// the cloner will throw an exception if it cannot convert the index to GPU
+    bool enableCpuFallback = false;
 };
 
 /// A centralized function that determines whether RAFT should

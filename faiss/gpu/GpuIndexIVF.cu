@@ -173,6 +173,7 @@ void GpuIndexIVF::copyFrom(const faiss::IndexIVF* index) {
         GpuResourcesProviderFromInstance pfi(getResources());
 
         GpuClonerOptions options;
+        options.enableCpuFallback = config_.enableCpuFallback;
         auto cloner = ToGpuCloner(&pfi, getDevice(), options);
 
         quantizer = cloner.clone_Index(index->quantizer);
